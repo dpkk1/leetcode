@@ -18,7 +18,7 @@ public:
         for(string x:v){
             ans += x;
         }
-        int t = ans.length();
-        return ans.substr(0,t-1);
+        ans.pop_back();
+        return ans;
     }
 };
