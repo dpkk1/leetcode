@@ -23,7 +23,6 @@ int main() {
 
 #define ll long long
 pair<long long, long long> getMinMax(long long a[], int n) {
-    pair<ll,ll>p;
     ll maxi = INT_MIN;
     ll mini = INT_MAX;
     for(ll i=0; i<n; i++){
