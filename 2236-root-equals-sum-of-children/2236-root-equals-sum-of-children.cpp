@@ -12,12 +12,7 @@
 class Solution {
 public:
     bool checkTree(TreeNode* root) {
-        int left=0, right=0;
-        if(root->left)
-            left = root->left->val;
-        if(root->right) 
-            right = root->right->val;
-        return ((right+left)==(root->val));
+        return ((root->right->val+root->left->val)==(root->val));
 
     }
 };
