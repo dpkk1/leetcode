@@ -11,20 +11,25 @@
  */
 class Solution {
 public:
-    
-    void inorder(TreeNode* root, vector<int>&ans){
-        if(root->left)
-            inorder(root->left, ans);
-        if(!root->left && !root->right)
-            ans.push_back(root->val);
-        if(root->right)
-            inorder(root->right, ans);
+    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+        stack<TreeNode*>s1, s2;
+        s1.push(root1);        
+        s2.push(root2);
+        while (!s1.empty() && !s2.empty())
+            if (dfs(s1) != dfs(s2)) return false;
+        return (s1.empty() && s2.empty());        
     }
     
-    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-        vector<int>nums1, nums2;
-        inorder(root1, nums1);
-        inorder(root2, nums2);
-        return (nums1==nums2);
+    int dfs(stack<TreeNode*>&s){
+        while(true){
+            TreeNode *node = s.top();
+            s.pop();
+            if(node->right)
+                s.push(node->right);
+            if(node->left)
+                s.push(node->left);
+            if(!node->left && !node->right)
+                return node->val;
+        }
     }
 };
