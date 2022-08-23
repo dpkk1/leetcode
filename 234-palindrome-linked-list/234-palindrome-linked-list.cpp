@@ -12,46 +12,24 @@
 #define Node ListNode
 
 class Solution {
-public:
-    
-    void reverseList(ListNode* &head){
-        if(!head || !head->next)
-            return;
-        Node *prev = NULL, *nextn, *curr=head;
-        while(curr != NULL){
-            nextn = curr -> next;
-            curr -> next = prev;
-            prev = curr;
-            curr = nextn;
-            
-        }
-        head = prev;
-    }
-    
-    bool isPalindrome(ListNode* head) {
-        if(!head || !head->next)
-            return true;
-        if(head->next->next == NULL){
-            return (head->val == head->next->val);
-        }
-        
-        
-        Node *slow=head, *fast=head, *middle;
-        while(fast->next && fast->next->next){
-            slow = slow ->next;
-            fast = fast -> next -> next;
-        }   
-
-        middle = slow->next;
-
-        slow->next = NULL;
-        reverseList(middle);
-        while(middle && head){
-            if(head->val != middle->val)
+public:    
+    bool isPalinString(string s){
+        int n = s.length();
+        for(int i=0; i<n/2; i++){
+            if(s[i] != s[n-i-1])
                 return false;
-            head = head->next;
-            middle = middle->next;
         }
         return true;
+    }
+    bool isPalindrome(ListNode* head) {
+        Node *temp = head;
+        string s="";
+        char c;
+        while(temp != NULL){
+            c = temp->val;
+            s.push_back(c);
+            temp = temp->next;
+        }
+        return isPalinString(s);
     }
 };
